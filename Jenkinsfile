@@ -4,7 +4,7 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-                echo "This is a build stage
+                echo "This is a build stage"
                 '''
             }
         }
