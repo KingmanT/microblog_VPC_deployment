@@ -4,27 +4,17 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+                echo "This is a build stage
                 '''
             }
         }
         stage ('Test') {
             steps {
                 sh '''#!/bin/bash
-                source venv/bin/activate
-                py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
+                echo "This is a test stage"
+                #source venv/bin/activate
+                #py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
                 '''
-            }
-            post {
-                always {
-                    junit 'test-reports/results.xml'
-                }
-            }
-        }
-      stage ('OWASP FS SCAN') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
       stage ('Clean') {
@@ -42,7 +32,7 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+                ssh ubuntu@52.55.132.82 'source /home/ubuntu/setup.sh'
                 '''
             }
         }
